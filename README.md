@@ -31,7 +31,7 @@ The final product is a **Live Health Dashboard** functioning as a complete Indus
 
 **We DO NOT store the heavy acoustic dataset in this repository.**
 
-1. Download the MIMII / Industrial Machine Dataset from [Kaggle Dataset Link Here].
+1. Download the MIMII Pump Sound Dataset from [Kaggle](https://www.kaggle.com/datasets/senaca/mimii-pump-sound-dataset).
 2. Extract the downloaded archive.
 3. Create a folder named `data/` in the root of this project.
 4. Place the audio `.wav` files inside the `data/` folder following this structure:
