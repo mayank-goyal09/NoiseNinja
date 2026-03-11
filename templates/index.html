@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Health Dashboard | Anomaly Detection</title>
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg-dark: #0f172a;
+            --panel-bg: rgba(30, 41, 59, 0.7);
+            --text-light: #f8fafc;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 40%, rgba(99, 102, 241, 0.1), transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(168, 85, 247, 0.08), transparent 50%);
+            animation: pulseBg 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            background: linear-gradient(to right, #818cf8, #d8b4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Glass Panels */
+        .panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Charts */
+        .chart-container {
+            width: 100%;
+            flex-grow: 1;
+            min-height: 250px;
+            position: relative;
+        }
+
+        /* Heatmap Canvas Container specifically */
+        .heatmap-container {
+            height: 200px;
+            margin-top: 15px;
+        }
+        
+        /* Stats & Controls Panel */
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Upload Zone */
+        .upload-area {
+            border: 2px dashed rgba(148, 163, 184, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: rgba(15, 23, 42, 0.3);
+            text-align: center;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--secondary);
+            background: rgba(168, 85, 247, 0.05);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .file-input { display: none; }
+
+        /* Educational Section */
+        .info-section {
+            max-width: 1400px;
+            margin: 40px auto 20px auto;
+        }
+
+        .info-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d8b4fe;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            color: #f8fafc;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card i {
+            color: var(--primary);
+        }
+
+        .info-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .btn-record {
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid #eab308;
+            color: #eab308;
+        }
+        
+        .btn-record.recording {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: #ef4444;
+            color: #ef4444;
+            animation: pulse-red 1.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-normal {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+        .btn-normal:hover { background: rgba(16, 185, 129, 0.3); transform: translateY(-2px); }
+
+        .btn-abnormal {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+        .btn-abnormal:hover { background: rgba(239, 68, 68, 0.3); transform: translateY(-2px); }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 5px 0;
+            color: #e2e8f0;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            margin-top: auto;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: #1e293b;
+            transition: all 0.3s ease;
+        }
+
+        .status-badge.healthy { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+        .status-badge.danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+        
+        /* Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px; height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+    <div class="ambient-bg"></div>
+
+    <div class="header">
+        <h1>Live Diagnostic Dashboard</h1>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 5px;">Deep Autoencoder Acoustic Reconstruction</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Visualizations -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <div class="panel" style="flex: 1;">
+                <div class="panel-title">
+                    <i class="fas fa-chart-line" style="color: var(--primary)"></i> Anomaly Meter (Reconstruction Error)
+                </div>
+                <div class="chart-container">
+                    <canvas id="errorChart"></canvas>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-wave-square" style="color: var(--secondary)"></i> Live Reconstructed Spectrogram
+                </div>
+                <div class="chart-container heatmap-container">
+                    <canvas id="spectrogramChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Controls -->
+        <div class="panel controls-panel">
+            <div class="panel-title">System Controls & Diagnostics</div>
+            
+            <form id="uploadForm">
+                <!-- Live Recording Button -->
+                <button type="button" class="btn btn-record" id="recordBtn" onclick="toggleRecording()" style="margin-bottom: 15px;">
+                    <i class="fas fa-microphone" id="recordIcon"></i> <span id="recordText">Start Live Microphone</span>
+                </button>
+
+                <div class="upload-area" id="dropZone" onclick="document.getElementById('audioInput').click()">
+                    <i class="fas fa-file-audio upload-icon"></i>
+                    <h3 id="fileNameText" style="margin:5px 0; font-size:1.1rem; color: #e2e8f0;">Or Drop audio file (.wav)</h3>
+                    <p style="color: #64748b; font-size: 0.8rem; margin: 0;">click to browse</p>
+                    <input type="file" id="audioInput" class="file-input" accept="audio/wav" onchange="handleFileSelect(event)">
+                </div>
+                <audio id="audioPreview" controls style="display: none; width: 100%; border-radius: 12px; margin-top: 10px;"></audio>
+                <button type="submit" id="analyzeBtn" class="btn" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); display: none; margin-top: 10px;">
+                    <span class="spinner" id="spinAnalyze"></span>
+                    <i class="fas fa-search-waveform" id="iconAnalyze" style="margin-right: 8px;"></i> Analyze Recording
+                </button>
+            </form>
+
+            <div style="border-bottom: 1px solid rgba(255,255,255,0.05); margin: 5px 0;"></div>
+
+            <button class="btn btn-normal" id="btnNormal" onclick="triggerSimulation('normal')">
+                <span class="spinner" id="spinNormal"></span>
+                <i class="fas fa-check-circle" id="iconNormal"></i> Simulate Healthy Machine
+            </button>
+            <button class="btn btn-abnormal" id="btnAbnormal" onclick="triggerSimulation('abnormal')">
+                <span class="spinner" id="spinAbnormal"></span>
+                <i class="fas fa-exclamation-triangle" id="iconAbnormal"></i> Simulate Bearing Wear
+            </button>
+
+            <div style="margin-top: 20px; display:flex; flex-direction: column; gap: 15px;">
+                <div class="stat-card">
+                    <div class="stat-label">Max Peak Error</div>
+                    <div class="stat-value" id="statPeak">0.0000</div>
+                    <div class="stat-label" style="font-size: 0.7rem;" id="statThreshold">Threshold: 0.0036</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Model Confidence</div>
+                    <div class="stat-value" id="statConf">--%</div>
+                </div>
+            </div>
+
+            <div class="status-badge" id="statusBadge">
+                Awaiting Data...
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Section for Layman Users -->
+    <div class="info-section">
+        <div class="info-header">
+            <i class="fas fa-graduation-cap"></i> How to Read this Dashboard
+        </div>
+        <div class="info-grid">
+            
+            <div class="info-card">
+                <h3><i class="fas fa-brain"></i> The Autoencoder AI</h3>
+                <p>
+                    This dashboard is powered by a Deep Learning Neural Network trained <strong>exclusively</strong> on the sounds of a perfectly healthy machine. It doesn't know what a broken machine sounds like; it only knows normal operation.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fas fa-chart-line"></i> Anomaly Meter (Loss)</h3>
+                <p>
+                    When live sound enters the system, the AI tries to reconstruct it. If it hears unexpected rattling or grinding, it fails to rebuild those sounds correctly. We track this <strong>reconstruction error</strong> on the top chart. If the error spikes above the yellow dashed line (Threshold: 0.0036), a mechanical failure is flagged!
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fas fa-wave-square"></i> Acoustic Spectrogram</h3>
+                <p>
+                    The bottom heatmap is the machine's "acoustic fingerprint." It breaks sound down into frequencies over time. A healthy machine shows smooth, consistent blue/purple waves. A failing bearing or wobbly fan will appear as bright yellow/white vertical spikes, highlighting the exact frequencies that are failing.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Global variables for charts
+        let errorChartInstance = null;
+        let heatmapInstance = null;
+        const THRESHOLD = 0.0036;
+
+        // Initialize empty charts on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initErrorChart(Array(50).fill(0));
+            initHeatmapChart(Array(20).fill(Array(50).fill(0)));
+            setupDragAndDrop();
+        });
+
+        // Setup File Upload Logic
+        function setupDragAndDrop() {
+            const dropZone = document.getElementById('dropZone');
+            const audioInput = document.getElementById('audioInput');
+            const uploadForm = document.getElementById('uploadForm');
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault(); e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.add('dragover'), false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.remove('dragover'), false);
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                let dt = e.dataTransfer;
+                audioInput.files = dt.files;
+                handleFileSelect({target: audioInput});
+            }, false);
+
+            uploadForm.addEventListener('submit', handleUploadSubmit);
+        }
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            const fileNameText = document.getElementById('fileNameText');
+            const audioPreview = document.getElementById('audioPreview');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+
+            if (file) {
+                if(!file.name.endsWith('.wav')) {
+                    alert('Please upload a .wav audio file.');
+                    e.target.value = '';
+                    return;
+                }
+                fileNameText.innerHTML = `${file.name.substring(0,20)}${file.name.length > 20 ? '...' : ''}`;
+                
+                // Show preview and analyze button
+                const url = URL.createObjectURL(file);
+                audioPreview.src = url;
+                audioPreview.style.display = 'block';
+                analyzeBtn.style.display = 'flex';
+                analyzeBtn.disabled = false;
+            }
+        }
+
+        async function handleUploadSubmit(e) {
+            e.preventDefault();
+            const file = document.getElementById('audioInput').files[0];
+            if (!file) return;
+            processAudioBlob(file);
+        }
+
+        async function processAudioBlob(blob) {
+            const formData = new FormData();
+            formData.append('audio', blob, 'live_record.wav');
+
+            const btnAnalyze = document.getElementById('analyzeBtn');
+            const spin = document.getElementById('spinAnalyze');
+            const icon = document.getElementById('iconAnalyze');
+
+            if(btnAnalyze) btnAnalyze.disabled = true;
+            if(spin) spin.style.display = 'inline-block';
+            if(icon) icon.style.display = 'none';
+            document.getElementById('statusBadge').innerText = "Running Deep Inference...";
+            document.getElementById('statusBadge').className = 'status-badge';
+
+            try {
+                const response = await fetch('/predict', { method: 'POST', body: formData });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    updateDashboard(data);
+                } else {
+                    document.getElementById('statusBadge').innerText = "Error Processing";
+                    alert(data.error);
+                }
+            } catch (error) {
+                console.error("Upload failed", error);
+                document.getElementById('statusBadge').innerText = "System Error";
+            } finally {
+                if(btnAnalyze) btnAnalyze.disabled = false;
+                if(spin) spin.style.display = 'none';
+                if(icon) icon.style.display = 'inline-block';
+            }
+        }
+
+        // Live Audio Recording logic using flawless native MediaRecorder API
+        let audioContext;
+        let audioStream;
+        let mediaRecorder;
+        let recordedChunks = [];
+        let isRecording = false;
+
+        async function toggleRecording() {
+            if (!isRecording) {
+                try {
+                    // CRITICAL FOR MACHINE SOUNDS: Disable browser voice processing filters!
+                    const constraints = {
+                        audio: {
+                            echoCancellation: false,
+                            noiseSuppression: false,
+                            autoGainControl: false,
+                            channelCount: 1
+                        }
+                    };
+                    
+                    audioStream = await navigator.mediaDevices.getUserMedia(constraints);
+                    mediaRecorder = new MediaRecorder(audioStream);
+                    recordedChunks = [];
+                    
+                    mediaRecorder.ondataavailable = function(e) {
+                        if (e.data.size > 0) {
+                            recordedChunks.push(e.data);
+                        }
+                    };
+                    
+                    mediaRecorder.start(100);
+                    isRecording = true;
+                    
+                    // Update UI
+                    const btn = document.getElementById('recordBtn');
+                    btn.classList.add('recording');
+                    document.getElementById('recordIcon').className = 'fas fa-stop-circle';
+                    document.getElementById('recordText').innerText = 'Stop & Analyze';
+                    
+                    // Hide any previous audio
+                    document.getElementById('audioPreview').style.display = 'none';
+                    document.getElementById('analyzeBtn').style.display = 'none';
+                    document.getElementById('fileNameText').innerText = "Recording Raw Acoustic Data...";
+                    
+                } catch (err) {
+                    console.error(err);
+                    alert("Microphone connection failed. Please ensure you have granted hardware access.");
+                }
+            } else {
+                // Stop recording cleanly using the native API
+                isRecording = false;
+                mediaRecorder.onstop = async function() {
+                    const btn = document.getElementById('recordBtn');
+                    btn.classList.remove('recording');
+                    document.getElementById('recordIcon').className = 'fas fa-microphone';
+                    document.getElementById('recordText').innerText = 'Start Live Microphone';
+                    document.getElementById('fileNameText').innerText = "Analyzing live stream...";
+                    
+                    const blob = new Blob(recordedChunks);
+                    await processRecordedAudio(blob);
+                };
+                mediaRecorder.stop();
+                audioStream.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        async function processRecordedAudio(blob) {
+            // Decode the native compressed audio blob perfectly into PCM Buffer
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const arrayBuffer = await blob.arrayBuffer();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            
+            const channelData = audioBuffer.getChannelData(0); // mono
+            const flattened = channelData;
+            
+            // Build perfect WAV file byte by byte
+            const wavBuffer = new ArrayBuffer(44 + flattened.length * 2);
+            const view = new DataView(wavBuffer);
+            
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + flattened.length * 2, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true); // PCM
+            view.setUint16(22, 1, true); // 1 channel
+            view.setUint32(24, audioBuffer.sampleRate, true);
+            view.setUint32(28, audioBuffer.sampleRate * 2, true);
+            view.setUint16(32, 2, true);
+            view.setUint16(34, 16, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, flattened.length * 2, true);
+            
+            let offset = 44;
+            for (let i = 0; i < flattened.length; i++, offset += 2) {
+                let s = Math.max(-1, Math.min(1, flattened[i]));
+                view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+            }
+            
+            const wavBlob = new Blob([view], { type: 'audio/wav' });
+            
+            // Play perfect file exactly what AI will hear
+            const url = URL.createObjectURL(wavBlob);
+            const audioPreview = document.getElementById('audioPreview');
+            audioPreview.src = url;
+            audioPreview.style.display = 'block';
+            audioPreview.play().catch(e => console.log('Autoplay prevented'));
+            
+            processAudioBlob(wavBlob);
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        async function triggerSimulation(type) {
+            const btnNorm = document.getElementById('btnNormal');
+            const btnAbnorm = document.getElementById('btnAbnormal');
+            const targetSpin = type === 'normal' ? document.getElementById('spinNormal') : document.getElementById('spinAbnormal');
+            const targetIcon = type === 'normal' ? document.getElementById('iconNormal') : document.getElementById('iconAbnormal');
+            
+            // UI Loading state
+            btnNorm.disabled = true; btnAbnorm.disabled = true;
+            targetSpin.style.display = 'inline-block';
+            targetIcon.style.display = 'none';
+            document.getElementById('statusBadge').innerText = "Running Deep Inference...";
+            document.getElementById('statusBadge').className = 'status-badge';
+
+            try {
+                const response = await fetch(`/simulate/${type}`);
+                const data = await response.json();
+
+                updateDashboard(data);
+                
+            } catch (error) {
+                console.error("Simulation failed", error);
+                document.getElementById('statusBadge').innerText = "System Error";
+            } finally {
+                // UI Reset
+                btnNorm.disabled = false; btnAbnorm.disabled = false;
+                targetSpin.style.display = 'none';
+                targetIcon.style.display = 'inline-block';
+            }
+        }
+
+        function updateDashboard(data) {
+            // Update Stats
+            document.getElementById('statPeak').innerText = parseFloat(data.metric.split(':')[1]).toFixed(4);
+            document.getElementById('statThreshold').innerText = data.threshold;
+            document.getElementById('statConf').innerText = data.confidence;
+            
+            // Update Status Badge
+            const badge = document.getElementById('statusBadge');
+            badge.innerText = data.status;
+            badge.className = `status-badge ${data.is_anomaly ? 'danger' : 'healthy'}`;
+
+            // Update Charts
+            initErrorChart(data.error_signal);
+            initHeatmapChart(data.spectrogram);
+        }
+
+        function initErrorChart(dataPoints) {
+            const ctx = document.getElementById('errorChart').getContext('2d');
+            
+            if (errorChartInstance) {
+                errorChartInstance.destroy();
+            }
+
+            const labels = Array.from({length: dataPoints.length}, (_, i) => `T-${dataPoints.length - i}`);
+            
+            // Determine if spike exists to color area chart red
+            const hasAnomaly = Math.max(...dataPoints) > THRESHOLD;
+            const lineColor = hasAnomaly ? 'rgba(239, 68, 68, 1)' : 'rgba(99, 102, 241, 1)';
+            const bgColor = hasAnomaly ? 'rgba(239, 68, 68, 0.2)' : 'rgba(99, 102, 241, 0.2)';
+
+            // Create annotation threshold line plugin
+            const thresholdLinePlugin = {
+                id: 'thresholdLine',
+                beforeDraw: chart => {
+                    const ctx = chart.ctx;
+                    const yAxis = chart.scales.y;
+                    const xAxis = chart.scales.x;
+                    const y = yAxis.getPixelForValue(THRESHOLD);
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(xAxis.left, y);
+                    ctx.lineTo(xAxis.right, y);
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = 'rgba(234, 179, 8, 0.8)'; // Yellow dash
+                    ctx.setLineDash([5, 5]);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            };
+
+            errorChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Reconstruction Loss (MSE)',
+                        data: dataPoints,
+                        borderColor: lineColor,
+                        backgroundColor: bgColor,
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutQuart'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#94a3b8' },
+                            max: Math.max(0.01, Math.max(...dataPoints) * 1.2) // Give headroom
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                },
+                plugins: [thresholdLinePlugin]
+            });
+        }
+
+        function initHeatmapChart(matrix2D) {
+            // Simplified Heatmap representation using flat bars for frequency bins
+            const ctx = document.getElementById('spectrogramChart').getContext('2d');
+            
+            if (heatmapInstance) {
+                heatmapInstance.destroy();
+            }
+
+            // We create 20 datasets (one for each freq bin) stacked on top of each other.
+            // Values are intensity.
+            const generateDatasets = () => {
+                const datasets = [];
+                // Reverse to draw high frequencies top to bottom
+                for(let i=matrix2D.length-1; i>=0; i--) {
+                    const rowData = matrix2D[i];
+                    datasets.push({
+                        label: `Freq Bin ${i}`,
+                        data: rowData.map(v => 1), // Height of block is 1
+                        backgroundColor: rowData.map(v => {
+                            // Map 0-255 to a color scaled 'inferno' or standard heat.
+                            // If it's a spike (255), make it glaring white/yellow.
+                            if(v > 200) return '#fbbf24'; // Warning Yellow
+                            if(v > 100) return '#a855f7'; // Purple mid-high
+                            return `rgba(99, 102, 241, ${Math.max(0.1, v/100)})`; // Blue baseline
+                        }),
+                        borderWidth: 0,
+                        barPercentage: 1.0,
+                        categoryPercentage: 1.0
+                    });
+                }
+                return datasets;
+            };
+
+            const labels = Array.from({length: matrix2D[0].length}, (_, i) => `T${i}`);
+
+            heatmapInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: generateDatasets()
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true, display: false },
+                        y: { stacked: true, display: false }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    },
+                    animation: {
+                        duration: 800
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
