@@ -176,3 +176,33 @@ python app.py
 | `/simulate/{status}` | GET | Tests response with "healthy" or "abnormal" dummy data |
 
 ---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+| Layer | Technology |
+|-------|-----------|
+| **Backend** | Flask |
+| **AI Model** | TensorFlow / Keras (Unsupervised Autoencoder) |
+| **Audio Processing**| Librosa |
+| **Frontend UI** | HTML5, CSS (Glassmorphism), Vanilla JS |
+| **Data Viz** | Chart.js |
+
+</div>
+
+---
+
+## 🗺️ Roadmap
+
+- [x] Initial supervised CNN approach
+- [x] Pivot to Unsupervised Autoencoder
+- [x] Overcome the Identity Mapping Trap
+- [x] Calibrate precise detection accuracy (Threshold: 0.0036)
+- [x] Live dashboard with glassmorphism UI
+- [x] Microphone integration with filter bypassing
+- [ ] Connect physical IoT decibel/audio sensors
+- [ ] Implement cloud data logging for anomalies
+- [ ] Email/SMS alerts when an anomaly is detected
+
+---
