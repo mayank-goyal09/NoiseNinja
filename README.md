@@ -20,7 +20,7 @@
 
 <br/>
 
-> **About:** The final output of your project will be a real-time industrial health dashboard that transforms raw machine sounds into an interactive diagnostic experience. Instead of a static file uploader, the app provides a Live Mel-Spectrogram visualizer that shows the machine's "acoustic fingerprint," a dynamic Anomaly Meter that tracks the reconstruction error against your 0.0036 threshold, and a Difference Map that highlights exactly which frequencies are failing. By using buttons to trigger "Normal" and "Abnormal" sound profiles, you demonstrate a functional Decision Support System that instantly flags mechanical instability, such as bearing wear or fan wobbles, through high-variance "spikes" in the error signal. This creates a professional, end-to-end Industry 4.0 solution that proves you can build, troubleshoot, and deploy a complex deep learning pipeline for real-world smart manufacturing.
+> **About:** **NoiseNinja** is a real-time industrial health dashboard that transforms raw machine sounds into an interactive diagnostic experience. Instead of a static file uploader, the application provides a live **Mel-Spectrogram visualizer** to display the machine's "acoustic fingerprint," a dynamic **Anomaly Meter** that tracks reconstruction error against a calculated threshold, and a **Difference Map** that highlights failing frequencies. It serves as a functional Decision Support System that instantly flags mechanical instability, such as bearing wear or fan wobbles, creating a professional, end-to-end **Industry 4.0** solution for smart manufacturing.
 
 ### 🌐 [**Experience the Live Dashboard Here**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
 
@@ -128,9 +128,10 @@ graph TD
 ---
 
 ## 🎯 The Accuracy!
-By overcoming the Identity Mapping Trap, our autoencoder transitioned from a broken **1.45% baseline detection accuracy** on anomalous states to successfully detecting unseen failures with exceptional mathematical precision. 
 
-Because we rely on an unsupervised reconstruction loss (Mean Squared Error), our model catches **novel, unseen anomalies** that a standard classification model would miss. By setting our Anomaly Threshold precisely to **`0.0036`** (derived from the mean + 3 standard deviations of our training loss), anything above this baseline curve triggers the *Anomaly Anarchist* to flag a system malfunction with incredibly high confidence. 
+- **Unsupervised Reconstruction Loss (MSE):** Catches **novel, unseen anomalies** that standard classification models would miss.
+- **Overcoming the Identity Mapping Trap:** Transitioned from a broken **1.45% baseline accuracy** to detecting unseen failures with exceptional mathematical precision.
+- **Precision Thresholding:** By setting the Anomaly Threshold to **`0.0036`** (derived from the mean + 3 standard deviations of training loss), the system confidently flags system malfunctions the moment an error curve spikes.
 
 ---
 
