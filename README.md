@@ -101,3 +101,78 @@
 *☕ "Silence the noise, find the failures."*
 
 </div>
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart LR
+    A[🎙️ Sound Source\nMic or WAV] --> B[Flask Server\napp.py]
+    B --> C[Librosa Processing\nMel-Spectrogram]
+    C --> D[Model Inference\nTF Autoencoder]
+    D --> E{MSE > 0.0036?}
+    E -->|Yes| F[🔴 Anomaly Detected]
+    E -->|No| G[🟢 Healthy Machine]
+    F --> H[🖥️ Dashboard UI\nindex.html]
+    G --> H
+    H --> I[Error Signal Chart]
+    H --> J[Spectrogram Heatmap]
+```
+
+---
+
+## 📁 Project Structure
+
+```
+NoiseNinja/
+│
+├── 📓 notebooks/
+│   ├── 02_Model_Training_CNN.ipynb         # Initial CNN explorations
+│   └── 03_Anomaly_Detection_Autoencoder.py # Autoencoder creation & training
+│
+├── 🌐 templates/
+│   └── index.html             # Dashboard UI, Glassmorphism, Chart.js logic
+│
+├── 🧠 anomaly_detection_autoencoder.h5     # Trained Keras model
+├── 🖥️ app.py                  # Flask backend (Audio processing & Inference)
+├── 📋 requirements.txt        # Python dependencies
+└── 📖 README.md               # You are here
+```
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/mayank-goyal09/NoiseNinja.git
+cd NoiseNinja
+
+# 2. Install dependencies
+pip install -r requirements.txt
+```
+
+### Run
+
+```bash
+# Start the Flask backend server
+python app.py
+
+# Open in browser
+# → http://127.0.0.1:5000/
+```
+
+---
+
+## 🔌 API Reference
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Serves the NoiseNinja dashboard |
+| `/predict` | POST | Submits audio data (file/blob) for AI inference |
+| `/simulate/{status}` | GET | Tests response with "healthy" or "abnormal" dummy data |
+
+---
