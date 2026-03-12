@@ -53,3 +53,51 @@
 </tr>
 <tr>
 <td width="50%">
+
+### 🎙️ Live Microphone Input
+- Captures audio seamlessly via **MediaRecorder API**
+- Explicitly disables browser audio filters (echo cancellation/noise suppression)
+- Supports direct **.WAV File Uploads**
+- Processes raw signals for ultimate integrity
+
+</td>
+<td width="50%">
+
+### ⚙️ Simulation Mode
+- Test logic instantly without breaking physical hardware
+- Built-in **"Healthy"** and **"Bearing Wear"** toggles
+- Observes the neural network spike in real-time
+- Perfect for demonstrations and debugging
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🖥️ Dashboard Preview
+
+<div align="center">
+
+```
+╔══════════════════════════════════════════════════════════╗
+║  🎸 NoiseNinja   Live Recording   Upload File   Simulate ║
+╠══════════════════════════════════════════════════════════╣
+║                                    ┌──────────────────┐  ║
+║  ANOMALY METER                     │  Status          │  ║
+║                                    │                  │  ║
+║  [Chart: Error Signal over Time]   │ 🔴 ANOMALY       │  ║
+║                                    │                  │  ║
+║                                    │ Confidence: 99%  │  ║
+║                                    │                  │  ║
+║  ─────────────────────────────     └──────────────────┘  ║
+║  Mel-Spectrogram Heatmap                                 ║
+║  ┌──────────────────────────────────────────────────┐    ║
+║  │   [Heatmap Visualizing Raw Audio Frequencies]    │    ║
+║  └──────────────────────────────────────────────────┘    ║
+╚══════════════════════════════════════════════════════════╝
+```
+
+*☕ "Silence the noise, find the failures."*
+
+</div>
