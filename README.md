@@ -1,11 +1,11 @@
 <div align="center">
 
 <!-- Animated Header Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D2017,50:1C5D42,100:31A572&height=200&section=header&text=NoiseNinja&fontSize=80&fontColor=ffffff&fontAlignY=38&desc=Real-time%20Industrial%20Health%20Dashboard&descAlignY=60&descSize=22&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D2017,50:1C5D42,100:31A572&height=200&section=header&text=NoiseNinja&fontSize=80&fontColor=ffffff&fontAlignY=38&desc=The%20Anomaly%20Anarchist&descAlignY=60&descSize=22&animation=fadeIn" width="100%"/>
 
 <!-- Animated Typing -->
 <a href="https://mayank-goyal09.github.io/NoiseNinja/templates/index.html">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=1000&color=31A572&center=true&vCenter=true&width=700&lines=Interactive+Diagnostic+Experience;Live+Mel-Spectrogram+Visualizer;Difference+Map+Highlights+Failing+Frequencies;%F0%9F%8E%A5+Listen+to+the+Machines...;%E2%98%95+Your+Acoustic+Sentinel+is+ready!" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=1000&color=31A572&center=true&vCenter=true&width=700&lines=End-to-End+Industrial+Acoustic+Anomaly+Detection;Unsupervised+Deep+Learning+Autoencoder;Defeating+the+Identity+Mapping+Trap!;%F0%9F%8E%A5+Listen+to+the+Machines...;%E2%98%95+Your+Acoustic+Sentinel+is+ready!" alt="Typing SVG" />
 </a>
 
 <br/>
@@ -20,34 +20,34 @@
 
 <br/>
 
-> The final output of your project will be a real-time industrial health dashboard that transforms raw machine sounds into an interactive diagnostic experience. Instead of a static file uploader, the app provides a Live Mel-Spectrogram visualizer that shows the machine's "acoustic fingerprint," a dynamic Anomaly Meter that tracks the reconstruction error against your 0.0036 threshold, and a Difference Map that highlights exactly which frequencies are failing. By using buttons to trigger "Normal" and "Abnormal" sound profiles, you demonstrate a functional Decision Support System that instantly flags mechanical instability, such as bearing wear or fan wobbles, through high-variance "spikes" in the error signal. This creates a professional, end-to-end Industry 4.0 solution that proves you can build, troubleshoot, and deploy a complex deep learning pipeline for real-world smart manufacturing.
+> **About:** The final output of your project will be a real-time industrial health dashboard that transforms raw machine sounds into an interactive diagnostic experience. Instead of a static file uploader, the app provides a Live Mel-Spectrogram visualizer that shows the machine's "acoustic fingerprint," a dynamic Anomaly Meter that tracks the reconstruction error against your 0.0036 threshold, and a Difference Map that highlights exactly which frequencies are failing. By using buttons to trigger "Normal" and "Abnormal" sound profiles, you demonstrate a functional Decision Support System that instantly flags mechanical instability, such as bearing wear or fan wobbles, through high-variance "spikes" in the error signal. This creates a professional, end-to-end Industry 4.0 solution that proves you can build, troubleshoot, and deploy a complex deep learning pipeline for real-world smart manufacturing.
 
-### 🌐 [**Experience the Live Demo Here**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
+### 🌐 [**Experience the Live Dashboard Here**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
 
 </div>
 
 ---
 
-## ✨ Features
+## 🛠️ What We Have Built (Features)
 
 <table>
 <tr>
 <td width="50%">
 
 ### 🤖 Unsupervised AI Engine
-- Powered by a **TensorFlow Autoencoder** trained *only* on normal sounds
-- Bypasses the **Identity Mapping Trap** using specific bottlenecking
-- Reconstructs audio effectively to isolate anomalies
-- Calculates precise **MSE Reconstruction Loss**
+- Powered by a **TensorFlow Autoencoder** trained *only* on normal sounds.
+- Bypasses the **Identity Mapping Trap** using specific bottlenecking.
+- Reconstructs audio effectively to isolate anomalies.
+- Calculates precise **MSE Reconstruction Loss**.
 
 </td>
 <td width="50%">
 
 ### 📊 Real-Time Diagnostic Dashboard
-- **Live Mel-Spectrogram Visualizer** detailing the machine's "acoustic fingerprint"
-- **Difference Map** highlighting exactly which frequencies are failing
-- **Dynamic Anomaly Meter** evaluating against the 0.0036 threshold
-- Interactive, professional **Industry 4.0 Solution**
+- **Live Mel-Spectrogram Visualizer** detailing the machine's "acoustic fingerprint."
+- **Difference Map** highlighting exactly which frequencies are failing.
+- **Dynamic Anomaly Meter** evaluating against the `0.0036` threshold.
+- Interactive, sleek **Glassmorphism UI** with a modern dark mode.
 
 </td>
 </tr>
@@ -55,23 +55,82 @@
 <td width="50%">
 
 ### 🎙️ Live Audio Streaming
-- Captures sound through the **MediaRecorder API**
-- Overrides harsh browser audio filters ensuring accuracy
-- Accepts traditional **.WAV audio file** drops
-- Full front-to-back integration with the AI backend
+- Captures sound through the **MediaRecorder API**.
+- Overrides harsh browser audio filters ensuring acoustic accuracy.
+- Accepts traditional **.WAV audio file** drops.
+- Full front-to-back integration with the Flask DL backend.
 
 </td>
 <td width="50%">
 
 ### ⚙️ Functional Decision Support
-- Buttons to quickly trigger **"Normal"** and **"Abnormal"** sound profiles
-- Simulate real-world instability like **bearing wear** or **fan wobbles**
-- Identify instability instantly through high-variance "spikes"
-- Real-world smart manufacturing reliability
+- Buttons to quickly trigger **"Healthy"** and **"Bearing Wear"** profiles.
+- Simulate real-world instability like fan wobbles instantly.
+- Identify instability through high-variance "spikes" in error.
+- Real-world smart manufacturing reliability for Industry 4.0.
 
 </td>
 </tr>
 </table>
+
+---
+
+## 🧠 System Architecture & Mind Maps
+
+### 🗺️ Project Mind Map
+```mermaid
+mindmap
+  root((NoiseNinja))
+    Frontend
+      Glassmorphism UI
+      Live Audio Recorder
+      ChartJS Spectrograms
+      Simulation Controls
+    Backend
+      Flask API Layer
+      Librosa Audio Processing
+      MSE Loss Calculation
+    AI Model
+      Unsupervised Autoencoder
+      Healthy Data Training
+      Bottleneck Compression
+    Key Features
+      Real-Time Detection
+      Raw Sound Processing
+      Decision Support System
+```
+
+### 📊 Detection Workflow Infographic
+```mermaid
+graph TD
+    A[Raw Audio Input] -->|Live Mic or .WAV Upload| B[Librosa Processing]
+    B --> C[Extract Mel-Spectrogram]
+    C --> D[TensorFlow Autoencoder Model]
+    D -->|Attempts Reconstruction| E{Calculate MSE Loss}
+    E -->|Loss < 0.0036 Threshold| F[🟢 Healthy Machine]
+    E -->|Loss > 0.0036 Threshold| G[🔴 Anomaly Detected!]
+    F --> H[Update Dashboard UI]
+    G --> H
+    H --> I[Live Spectrogram]
+    H --> J[Anomaly Error Signal]
+```
+
+---
+
+## 🚀 What We Have Done (Our Journey)
+
+1. **Started with a CNN:** We initially approached the problem with a supervised Convolutional Neural Network (CNN). However, collecting paired data for every possible mechanical failure was impossible.
+2. **Pivoted to an Unsupervised Autoencoder:** We shifted to an autoencoder that only learns the "symphony" of a normal, healthy machine. Any sound that doesn't fit this pattern throws a high mathematical error.
+3. **Escaped the Identity Mapping Trap:** During training, we hit a brick wall—the AI was too smart! It fell into the **"Identity Mapping Trap,"** simply memorizing and reconstructing everything perfectly, even the anomalies. 
+4. **The Fix:** We forcefully shrank the model's bottleneck layer. By choking the information pipeline, we forced the AI to compress and memorize *only* the absolute core frequencies of healthy sounds. 
+5. **Dashboard Integration:** We built a Flask backend to connect the Keras (`.h5`) model directly to a real-time web frontend using standard web APIs.
+
+---
+
+## 🎯 The Accuracy!
+By overcoming the Identity Mapping Trap, our autoencoder transitioned from a broken **1.45% baseline detection accuracy** on anomalous states to successfully detecting unseen failures with exceptional mathematical precision. 
+
+Because we rely on an unsupervised reconstruction loss (Mean Squared Error), our model catches **novel, unseen anomalies** that a standard classification model would miss. By setting our Anomaly Threshold precisely to **`0.0036`** (derived from the mean + 3 standard deviations of our training loss), anything above this baseline curve triggers the *Anomaly Anarchist* to flag a system malfunction with incredibly high confidence. 
 
 ---
 
@@ -91,9 +150,9 @@
 ║  /      \/\____                    │ Type: Fan Wobble │  ║
 ║                                    │                  │  ║
 ║  ─────────────────────────────     └──────────────────┘  ║
-║  Live Mel-Spectrogram & Difference Map                   ║
+║  Live Mel-Spectrogram Heatmap                            ║
 ║  ┌──────────────────────────────────────────────────┐    ║
-║  │   [Acoustic Fingerprint Heatmap & Diff]          │    ║
+║  │   [Acoustic Fingerprint Heatmap Viewer]          │    ║
 ║  └──────────────────────────────────────────────────┘    ║
 ╚══════════════════════════════════════════════════════════╝
 ```
@@ -104,110 +163,21 @@
 
 ---
 
-## 🏗️ Architecture
-
-```mermaid
-flowchart LR
-    A[🎙️ Acoustic Source] --> B[Flask API\napp.py]
-    B --> C[Librosa\nMel-Spectrogram]
-    C --> D[TensorFlow\nDeep Learning Pipeline]
-    D --> E{Error Signal\n> 0.0036?}
-    E -->|Yes| F[🔴 Flag Instability]
-    E -->|No| G[🟢 Healthy Profile]
-    F --> H[🖥️ Interactive Diagnostic Exp.\nindex.html]
-    G --> H
-    H --> I[Anomaly Meter & Diff Map]
-    H --> J[Decision Support System]
-```
-
----
-
-## 📁 Project Structure
-
-```
-NoiseNinja/
-│
-├── 📓 notebooks/
-│   ├── 02_Model_Training_CNN.ipynb         # Explored CNN
-│   └── 03_Anomaly_Detection_Autoencoder.py # Autoencoder approach
-│
-├── 🌐 templates/
-│   └── index.html             # Real-time industrial health dashboard
-│
-├── 🧠 anomaly_detection_autoencoder.h5     # Trained AI model weights
-├── 🖥️ app.py                  # Flask endpoints & DL Pipeline
-├── 📋 requirements.txt        # Deep learning dependencies
-└── 📖 README.md               # You are here
-```
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/mayank-goyal09/NoiseNinja.git
-cd NoiseNinja
-
-# 2. Install dependencies
-pip install -r requirements.txt
-```
-
-### Run
-
-```bash
-# Start the Flask backend server
-python app.py
-
-# Open in browser
-# → http://127.0.0.1:5000/
-```
-
----
-
-## 🔌 API Reference
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Serves the interactive diagnostic experience |
-| `/predict` | POST | Audio processing through DL pipeline & difference mapping |
-| `/simulate/{status}` | GET | Triggers "Normal" and "Abnormal" profiles (e.g., bearing wear) |
-
----
-
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Structure
 
 <div align="center">
 
 | Layer | Technology |
 |-------|-----------|
 | **Backend** | Flask |
-| **Deep Learning** | TensorFlow / Keras (Unsupervised Autoencoder) |
-| **Acoustic Pre-processing**| Librosa |
-| **Frontend UI** | HTML5, CSS, Vanilla JS |
+| **Deep Learning Engine** | TensorFlow / Keras (Unsupervised Autoencoder) |
+| **Acoustic Processing**| Librosa |
+| **Frontend UI** | HTML5, CSS (Glassmorphism), Vanilla JS |
 | **Data Visualization** | Chart.js |
 
 </div>
 
----
-
-## 🗺️ Roadmap
-
-- [x] Initial supervised CNN approach
-- [x] Pivot to Unsupervised Autoencoder
-- [x] Overcome the Identity Mapping Trap
-- [x] Calibrate precise detection accuracy (Threshold: 0.0036)
-- [x] Real-time industrial health dashboard
-- [x] Live Microphone & Difference Map integration
-- [ ] Connect physical IoT decibel/audio sensors
-- [ ] Implement cloud data logging for anomalies
-- [ ] Email/SMS alerts when an anomaly is detected
-
----
-
-## 👨‍💻 Author
+<br>
 
 <div align="center">
 
