@@ -1,11 +1,11 @@
 <div align="center">
 
 <!-- Animated Header Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B0C10,50:1F2833,100:45A29E&height=200&section=header&text=NoiseNinja&fontSize=80&fontColor=66FCF1&fontAlignY=38&desc=Industrial%20Acoustic%20Anomaly%20Detection&descAlignY=60&descSize=22&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D2017,50:1C5D42,100:31A572&height=200&section=header&text=NoiseNinja&fontSize=80&fontColor=ffffff&fontAlignY=38&desc=Real-time%20Industrial%20Health%20Dashboard&descAlignY=60&descSize=22&animation=fadeIn" width="100%"/>
 
 <!-- Animated Typing -->
 <a href="https://mayank-goyal09.github.io/NoiseNinja/templates/index.html">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=1000&color=66FCF1&center=true&vCenter=true&width=700&lines=Powered+by+Flask%2C+TensorFlow%2C+and+Vanilla+JS;Unsupervised+Autoencoder+AI+Engine;Live+Microphone+%26+Spectrogram+Dashboard;Defeating+the+Identity+Mapping+Trap!;%F0%9F%8E%A5+Listen+to+the+Machines...;%E2%98%95+Your+Acoustic+Sentinel+is+ready!" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=1000&color=31A572&center=true&vCenter=true&width=700&lines=Interactive+Diagnostic+Experience;Live+Mel-Spectrogram+Visualizer;Difference+Map+Highlights+Failing+Frequencies;%F0%9F%8E%A5+Listen+to+the+Machines...;%E2%98%95+Your+Acoustic+Sentinel+is+ready!" alt="Typing SVG" />
 </a>
 
 <br/>
@@ -20,9 +20,9 @@
 
 <br/>
 
-> **NoiseNinja** listens to the acoustic footprint of industrial machines and uses an unsupervised deep learning Autoencoder to detect microscopic mechanical anomalies before they become catastrophic failures.
+> The final output of your project will be a real-time industrial health dashboard that transforms raw machine sounds into an interactive diagnostic experience. Instead of a static file uploader, the app provides a Live Mel-Spectrogram visualizer that shows the machine's "acoustic fingerprint," a dynamic Anomaly Meter that tracks the reconstruction error against your 0.0036 threshold, and a Difference Map that highlights exactly which frequencies are failing. By using buttons to trigger "Normal" and "Abnormal" sound profiles, you demonstrate a functional Decision Support System that instantly flags mechanical instability, such as bearing wear or fan wobbles, through high-variance "spikes" in the error signal. This creates a professional, end-to-end Industry 4.0 solution that proves you can build, troubleshoot, and deploy a complex deep learning pipeline for real-world smart manufacturing.
 
-### 🌐 [**Experience the Live Dashboard Here**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
+### 🌐 [**Experience the Live Demo Here**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
 
 </div>
 
@@ -35,39 +35,39 @@
 <td width="50%">
 
 ### 🤖 Unsupervised AI Engine
-- Powered by a **TensorFlow Autoencoder** trained *only* on healthy data
-- Safely escapes the **"Identity Mapping Trap"** with compressed bottleneck
-- Real-time **0.0036 MSE Loss Threshold** for pinpoint accuracy
-- Catches unseen mechanical failures autonomously
+- Powered by a **TensorFlow Autoencoder** trained *only* on normal sounds
+- Bypasses the **Identity Mapping Trap** using specific bottlenecking
+- Reconstructs audio effectively to isolate anomalies
+- Calculates precise **MSE Reconstruction Loss**
 
 </td>
 <td width="50%">
 
-### 🎛️ Acoustic Dashboard
-- Sleek **Glassmorphism UI** with modern dark mode
-- Real-time anomaly **Error Signal Charts** via Chart.js
-- Extracted **Mel-Spectrogram Heatmaps** on the fly
-- Dynamic Status Badges prioritizing industrial health
+### 📊 Real-Time Diagnostic Dashboard
+- **Live Mel-Spectrogram Visualizer** detailing the machine's "acoustic fingerprint"
+- **Difference Map** highlighting exactly which frequencies are failing
+- **Dynamic Anomaly Meter** evaluating against the 0.0036 threshold
+- Interactive, professional **Industry 4.0 Solution**
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### 🎙️ Live Microphone Input
-- Captures audio seamlessly via **MediaRecorder API**
-- Explicitly disables browser audio filters (echo cancellation/noise suppression)
-- Supports direct **.WAV File Uploads**
-- Processes raw signals for ultimate integrity
+### 🎙️ Live Audio Streaming
+- Captures sound through the **MediaRecorder API**
+- Overrides harsh browser audio filters ensuring accuracy
+- Accepts traditional **.WAV audio file** drops
+- Full front-to-back integration with the AI backend
 
 </td>
 <td width="50%">
 
-### ⚙️ Simulation Mode
-- Test logic instantly without breaking physical hardware
-- Built-in **"Healthy"** and **"Bearing Wear"** toggles
-- Observes the neural network spike in real-time
-- Perfect for demonstrations and debugging
+### ⚙️ Functional Decision Support
+- Buttons to quickly trigger **"Normal"** and **"Abnormal"** sound profiles
+- Simulate real-world instability like **bearing wear** or **fan wobbles**
+- Identify instability instantly through high-variance "spikes"
+- Real-world smart manufacturing reliability
 
 </td>
 </tr>
@@ -81,19 +81,19 @@
 
 ```
 ╔══════════════════════════════════════════════════════════╗
-║  🎸 NoiseNinja   Live Recording   Upload File   Simulate ║
+║  ⚙️ NoiseNinja  Live Mic  Upload Audio  Dev Simulation    ║
 ╠══════════════════════════════════════════════════════════╣
 ║                                    ┌──────────────────┐  ║
-║  ANOMALY METER                     │  Status          │  ║
+║  ANOMALY METER                     │  System Status   │  ║
 ║                                    │                  │  ║
-║  [Chart: Error Signal over Time]   │ 🔴 ANOMALY       │  ║
-║                                    │                  │  ║
-║                                    │ Confidence: 99%  │  ║
+║      /\                            │ 🔴 ANOMALY       │  ║
+║   /\/  \  Threshold 0.0036         │                  │  ║
+║  /      \/\____                    │ Type: Fan Wobble │  ║
 ║                                    │                  │  ║
 ║  ─────────────────────────────     └──────────────────┘  ║
-║  Mel-Spectrogram Heatmap                                 ║
+║  Live Mel-Spectrogram & Difference Map                   ║
 ║  ┌──────────────────────────────────────────────────┐    ║
-║  │   [Heatmap Visualizing Raw Audio Frequencies]    │    ║
+║  │   [Acoustic Fingerprint Heatmap & Diff]          │    ║
 ║  └──────────────────────────────────────────────────┘    ║
 ╚══════════════════════════════════════════════════════════╝
 ```
@@ -108,16 +108,16 @@
 
 ```mermaid
 flowchart LR
-    A[🎙️ Sound Source\nMic or WAV] --> B[Flask Server\napp.py]
-    B --> C[Librosa Processing\nMel-Spectrogram]
-    C --> D[Model Inference\nTF Autoencoder]
-    D --> E{MSE > 0.0036?}
-    E -->|Yes| F[🔴 Anomaly Detected]
-    E -->|No| G[🟢 Healthy Machine]
-    F --> H[🖥️ Dashboard UI\nindex.html]
+    A[🎙️ Acoustic Source] --> B[Flask API\napp.py]
+    B --> C[Librosa\nMel-Spectrogram]
+    C --> D[TensorFlow\nDeep Learning Pipeline]
+    D --> E{Error Signal\n> 0.0036?}
+    E -->|Yes| F[🔴 Flag Instability]
+    E -->|No| G[🟢 Healthy Profile]
+    F --> H[🖥️ Interactive Diagnostic Exp.\nindex.html]
     G --> H
-    H --> I[Error Signal Chart]
-    H --> J[Spectrogram Heatmap]
+    H --> I[Anomaly Meter & Diff Map]
+    H --> J[Decision Support System]
 ```
 
 ---
@@ -128,15 +128,15 @@ flowchart LR
 NoiseNinja/
 │
 ├── 📓 notebooks/
-│   ├── 02_Model_Training_CNN.ipynb         # Initial CNN explorations
-│   └── 03_Anomaly_Detection_Autoencoder.py # Autoencoder creation & training
+│   ├── 02_Model_Training_CNN.ipynb         # Explored CNN
+│   └── 03_Anomaly_Detection_Autoencoder.py # Autoencoder approach
 │
 ├── 🌐 templates/
-│   └── index.html             # Dashboard UI, Glassmorphism, Chart.js logic
+│   └── index.html             # Real-time industrial health dashboard
 │
-├── 🧠 anomaly_detection_autoencoder.h5     # Trained Keras model
-├── 🖥️ app.py                  # Flask backend (Audio processing & Inference)
-├── 📋 requirements.txt        # Python dependencies
+├── 🧠 anomaly_detection_autoencoder.h5     # Trained AI model weights
+├── 🖥️ app.py                  # Flask endpoints & DL Pipeline
+├── 📋 requirements.txt        # Deep learning dependencies
 └── 📖 README.md               # You are here
 ```
 
@@ -171,9 +171,9 @@ python app.py
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/` | GET | Serves the NoiseNinja dashboard |
-| `/predict` | POST | Submits audio data (file/blob) for AI inference |
-| `/simulate/{status}` | GET | Tests response with "healthy" or "abnormal" dummy data |
+| `/` | GET | Serves the interactive diagnostic experience |
+| `/predict` | POST | Audio processing through DL pipeline & difference mapping |
+| `/simulate/{status}` | GET | Triggers "Normal" and "Abnormal" profiles (e.g., bearing wear) |
 
 ---
 
@@ -184,10 +184,10 @@ python app.py
 | Layer | Technology |
 |-------|-----------|
 | **Backend** | Flask |
-| **AI Model** | TensorFlow / Keras (Unsupervised Autoencoder) |
-| **Audio Processing**| Librosa |
-| **Frontend UI** | HTML5, CSS (Glassmorphism), Vanilla JS |
-| **Data Viz** | Chart.js |
+| **Deep Learning** | TensorFlow / Keras (Unsupervised Autoencoder) |
+| **Acoustic Pre-processing**| Librosa |
+| **Frontend UI** | HTML5, CSS, Vanilla JS |
+| **Data Visualization** | Chart.js |
 
 </div>
 
@@ -199,8 +199,8 @@ python app.py
 - [x] Pivot to Unsupervised Autoencoder
 - [x] Overcome the Identity Mapping Trap
 - [x] Calibrate precise detection accuracy (Threshold: 0.0036)
-- [x] Live dashboard with glassmorphism UI
-- [x] Microphone integration with filter bypassing
+- [x] Real-time industrial health dashboard
+- [x] Live Microphone & Difference Map integration
 - [ ] Connect physical IoT decibel/audio sensors
 - [ ] Implement cloud data logging for anomalies
 - [ ] Email/SMS alerts when an anomaly is detected
@@ -212,7 +212,7 @@ python app.py
 <div align="center">
 
 <a href="https://mayank-goyal09.github.io/">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0B0C10,100:1F2833&height=60&text=Made%20with%20%E2%98%95%20by%20Mayank%20Goyal&fontColor=66FCF1&fontSize=20&fontAlignY=65" width="500"/>
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0D2017,100:1C5D42&height=60&text=Made%20with%20%E2%98%95%20by%20Mayank%20Goyal&fontColor=ffffff&fontSize=20&fontAlignY=65" width="500"/>
 </a>
 
 <br/><br/>
@@ -225,5 +225,4 @@ python app.py
 ---
 
 <!-- Footer Wave -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:45A29E,100:0B0C10&height=120&section=footer" width="100%"/>
-
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:31A572,100:0D2017&height=120&section=footer" width="100%"/>
