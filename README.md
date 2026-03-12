@@ -206,3 +206,24 @@ python app.py
 - [ ] Email/SMS alerts when an anomaly is detected
 
 ---
+
+## 👨‍💻 Author
+
+<div align="center">
+
+<a href="https://mayank-goyal09.github.io/">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:0B0C10,100:1F2833&height=60&text=Made%20with%20%E2%98%95%20by%20Mayank%20Goyal&fontColor=66FCF1&fontSize=20&fontAlignY=65" width="500"/>
+</a>
+
+<br/><br/>
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-mayank--goyal09.github.io-31A572?style=for-the-badge&logo=github&logoColor=white)](https://mayank-goyal09.github.io/)
+[![GitHub](https://img.shields.io/badge/GitHub-mayank--goyal09-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mayank-goyal09)
+
+</div>
+
+---
+
+<!-- Footer Wave -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:45A29E,100:0B0C10&height=120&section=footer" width="100%"/>
+
