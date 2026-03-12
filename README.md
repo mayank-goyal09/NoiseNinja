@@ -9,3 +9,47 @@
 </a>
 
 <br/>
+
+<!-- Badges -->
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Backend-000000?style=for-the-badge&logo=flask&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-UI-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-Hosted-181717?style=for-the-badge&logo=github&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+<br/>
+
+> **NoiseNinja** listens to the acoustic footprint of industrial machines and uses an unsupervised deep learning Autoencoder to detect microscopic mechanical anomalies before they become catastrophic failures.
+
+### 🌐 [**Experience the Live Dashboard Here**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
+
+</div>
+
+---
+
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🤖 Unsupervised AI Engine
+- Powered by a **TensorFlow Autoencoder** trained *only* on healthy data
+- Safely escapes the **"Identity Mapping Trap"** with compressed bottleneck
+- Real-time **0.0036 MSE Loss Threshold** for pinpoint accuracy
+- Catches unseen mechanical failures autonomously
+
+</td>
+<td width="50%">
+
+### 🎛️ Acoustic Dashboard
+- Sleek **Glassmorphism UI** with modern dark mode
+- Real-time anomaly **Error Signal Charts** via Chart.js
+- Extracted **Mel-Spectrogram Heatmaps** on the fly
+- Dynamic Status Badges prioritizing industrial health
+
+</td>
+</tr>
+<tr>
+<td width="50%">
