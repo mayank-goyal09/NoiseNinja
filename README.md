@@ -22,7 +22,7 @@
 
 > **About:** **NoiseNinja** is a real-time industrial health dashboard that transforms raw machine sounds into an interactive diagnostic experience. Instead of a static file uploader, the application provides a live **Mel-Spectrogram visualizer** to display the machine's "acoustic fingerprint," a dynamic **Anomaly Meter** that tracks reconstruction error against a calculated threshold, and a **Difference Map** that highlights failing frequencies. It serves as a functional Decision Support System that instantly flags mechanical instability, such as bearing wear or fan wobbles, creating a professional, end-to-end **Industry 4.0** solution for smart manufacturing.
 
-### 🌐 [**Experience the Live Dashboard Here**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
+### 🔗 [**App Link**](https://mayank-goyal09.github.io/NoiseNinja/templates/index.html)
 
 </div>
 
